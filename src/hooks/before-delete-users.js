@@ -27,6 +27,9 @@ module.exports = (options = {}) => {
       }
       return context; //delete user
     } else if (userType === "admin") {
+      if (id == 1) {
+        throw new Error("you cant delete owner of server");
+      }
       return context; //admin can delete any user without check :)
     }
   };

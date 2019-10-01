@@ -5,6 +5,9 @@
 module.exports = (options = {}) => {
   return async context => {
     const { id, data, app, params } = context;
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
+      throw new Error("sorry no data to update it");
+    }
 
     const userData = params.user; //get user data from params
     const { userType } = userData; //get userType
@@ -44,6 +47,13 @@ module.exports = (options = {}) => {
       });
 
       const userData = { ...userDB.data[0] }; //get user data
+      const adminData = params.user; //get admin data from params
+      const adminId = adminData.id;
+      if (userData.id == 1) {
+        if (adminId != userData) {
+          throw new Error("you cant delete the update of server");
+        }
+      }
       const valuesOfDataSend = Object.keys(data); //get all data admin need to change it
       valuesOfDataSend.forEach(keys => {
         //change an original data admin require to change it with a data admin send it

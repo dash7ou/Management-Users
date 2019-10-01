@@ -8,12 +8,9 @@ module.exports = (options = {}) => {
     const { data, method } = context;
     if (method === "create") {
       const schema = Joi.object({
-        email: Joi.email().required(),
+        email: Joi.string().required(),
         password: Joi.string().required(),
-        age: Joi.string()
-          .min(10)
-          .max(50)
-          .required(),
+        age: Joi.string().required(),
         address: Joi.string()
           .min(5)
           .max(50),
@@ -29,7 +26,7 @@ module.exports = (options = {}) => {
     }
     if (method === "update") {
       const schema = Joi.object({
-        age: Joi.string().required(),
+        age: Joi.string(),
         address: Joi.string()
           .min(5)
           .max(50),

@@ -33,8 +33,8 @@ module.exports = function(app) {
               "$2a$10$nMELJ93j7hMvBjp0C2VwBu6C5JhIbD3Wg4oVrCCGu2/Hpzk7O4nRa", //mohammedmohammed
             age: "30",
             userType: "admin",
-            isAccept: null,
-            disappled: null
+            isAccept: true,
+            disappled: false
           });
         })
         // some commits for create table :)
