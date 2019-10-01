@@ -13,19 +13,26 @@ const beforeDeleteUsers = require("../../hooks/before-delete-users");
 
 const permissions = require("../../hooks/permissions");
 
-const beforeGetUser = require('../../hooks/before-get-user');
+const beforeGetUser = require("../../hooks/before-get-user");
 
-const afterFindUsers = require('../../hooks/after-find-users');
+const afterFindUsers = require("../../hooks/after-find-users");
+
+const validationInput = require("../../hooks/validation-input");
 
 module.exports = {
   before: {
     all: [permissions()],
     find: [authenticate("jwt"), afterFindUsers()],
     get: [authenticate("jwt"), beforeGetUser()],
-    create: [hashPassword("password"), adminAndRegisterAfterCreateUser()],
+    create: [
+      hashPassword("password"),
+      validationInput(),
+      adminAndRegisterAfterCreateUser()
+    ],
     update: [
       hashPassword("password"),
       authenticate("jwt"),
+      validationInput(),
       beforeUpdateUsers()
     ],
     patch: [hashPassword("password"), authenticate("jwt")],

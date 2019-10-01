@@ -1,11 +1,15 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
+const { authenticate } = require("@feathersjs/authentication").hooks;
+
+const beforeCreateMessages = require("../../hooks/before-create-messages");
+
+const checkValidationMessages = require("../../hooks/check-validation-messages");
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate("jwt")],
     find: [],
     get: [],
-    create: [],
+    create: [checkValidationMessages(), beforeCreateMessages()],
     update: [],
     patch: [],
     remove: []
