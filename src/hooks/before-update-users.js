@@ -50,7 +50,9 @@ module.exports = (options = {}) => {
       const adminData = params.user; //get admin data from params
       const adminId = adminData.id;
       if (userData.id == 1) {
+        // check main admin server
         if (adminId != userData) {
+          //check if not the main admin
           throw new Error("you cant delete the update of server");
         }
       }

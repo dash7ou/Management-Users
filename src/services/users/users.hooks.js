@@ -5,7 +5,7 @@ const {
   protect
 } = require("@feathersjs/authentication-local").hooks;
 
-const adminAndRegisterAfterCreateUser = require("../../hooks/admin-and-register-after-create-user");
+const beforeCreateUser = require("../../hooks/before-create-user");
 
 const beforeUpdateUsers = require("../../hooks/before-update-users");
 
@@ -15,20 +15,16 @@ const permissions = require("../../hooks/permissions");
 
 const beforeGetUser = require("../../hooks/before-get-user");
 
-const afterFindUsers = require("../../hooks/after-find-users");
+const beforeFindUsers = require("../../hooks/before-find-users");
 
 const validationInput = require("../../hooks/validation-input");
 
 module.exports = {
   before: {
     all: [permissions()],
-    find: [authenticate("jwt"), afterFindUsers()],
+    find: [authenticate("jwt"), beforeFindUsers()],
     get: [authenticate("jwt"), beforeGetUser()],
-    create: [
-      hashPassword("password"),
-      validationInput(),
-      adminAndRegisterAfterCreateUser()
-    ],
+    create: [hashPassword("password"), validationInput(), beforeCreateUser()],
     update: [
       hashPassword("password"),
       authenticate("jwt"),
