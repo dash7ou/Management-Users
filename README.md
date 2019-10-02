@@ -23,8 +23,18 @@ Getting up and running is as easy as 1, 2, 3.
    npm run start
    ```
 
-## Run Dev Environment
+### Run Dev Environment
 
-    ```
-    npm run dev
-    ```
+to run dev environment in trminal write
+
+```
+npm run start
+```
+
+### Database Diagram
+
+[data diagran url](https://drive.google.com/file/d/11LfrEWXJYrwRa1OwIKG8fK-FPOCZW3GF/view?usp=sharing)
+
+### Api Documentation
+
+[Swagger hub link](https://app.swaggerhub.com/apis/unit-one/user-mangment/1.0.2)

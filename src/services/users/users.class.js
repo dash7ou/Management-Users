@@ -6,7 +6,6 @@ exports.Users = class Users extends Service {
     return super.create(data, params);
   }
   update(id, data, params) {
-    console.log(data);
     return super.update(id, data, params);
   }
   delete(id, params) {

@@ -6,9 +6,7 @@ module.exports = (options = {}) => {
   return async context => {
     // eslint-disable-next-line no-shadow-restricted-names
     const { params } = context;
-    // console.log(context.arguments[0]);
 
-    // console.log();
     const { userType } = { ...params.user };
     if (userType === "user") {
       throw new Error("you have not the permission to send messages");

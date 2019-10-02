@@ -11,8 +11,6 @@ const beforeUpdateUsers = require("../../hooks/before-update-users");
 
 const beforeDeleteUsers = require("../../hooks/before-delete-users");
 
-const permissions = require("../../hooks/permissions");
-
 const beforeGetUser = require("../../hooks/before-get-user");
 
 const beforeFindUsers = require("../../hooks/before-find-users");
@@ -21,7 +19,7 @@ const validationInput = require("../../hooks/validation-input");
 
 module.exports = {
   before: {
-    all: [permissions()],
+    all: [],
     find: [authenticate("jwt"), beforeFindUsers()],
     get: [authenticate("jwt"), beforeGetUser()],
     create: [hashPassword("password"), validationInput(), beforeCreateUser()],
