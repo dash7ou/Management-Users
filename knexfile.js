@@ -8,7 +8,7 @@ module.exports = {
       port: "3306",
       user: "root",
       password: "mohammed12345***",
-      database: "first_project_unitone"
+      database: "first_project_unitone_1"
     },
     migrations: {
       directory: __dirname + "/src/DB/migrations"

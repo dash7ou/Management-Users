@@ -22,21 +22,10 @@ module.exports = function(app) {
           table.string("address");
           table.string("userType");
           table.boolean("isAccept");
-          table.boolean("disappled");
+          table.boolean("block");
           table.timestamps(true, true);
         })
-        .then(_ => {
-          //add admin when create the server :)
-          return db("users").insert({
-            email: "admin@exaple.com",
-            password:
-              "$2a$10$nMELJ93j7hMvBjp0C2VwBu6C5JhIbD3Wg4oVrCCGu2/Hpzk7O4nRa", //mohammedmohammed
-            age: "30",
-            userType: "admin",
-            isAccept: true,
-            disappled: false
-          });
-        })
+
         // some commits for create table :)
         .then(() => console.log(`Created ${tableName} table`))
         .catch(e => console.error(`Error creating ${tableName} table`, e));

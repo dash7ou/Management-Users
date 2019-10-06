@@ -10,10 +10,7 @@
     "entity": "user",
     "service": "users",
     "secret": "RWnU0RAQT6V/M6n5SR5GlTVL0PA=",
-    "authStrategies": [
-      "jwt",
-      "local"
-    ],
+    "authStrategies": ["jwt", "local"],
     "jwtOptions": {
       "header": {
         "typ": "access"
@@ -35,7 +32,7 @@
       "port": "3306",
       "user": "root",
       "password": "mohammed12345***",
-      "database": "first_project_unitone"
+      "database": "first_project_unitone_1"
     }
   },
   "nedb": "../data"

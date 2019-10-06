@@ -4,8 +4,17 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    const userData = context.params.user; //get data user
-    const { userType, isAccept, disappled } = { ...userData }; //get the al permissions for user to check it
+    const { params, method } = context;
+    if (params.authenticated === true && method === "update") {
+      return context;
+    }
+    if (!params.user) {
+      //when use get in another place in our code
+      return context;
+    }
+    const userData = params.user; //get data user
+
+    const { userType, isAccept, block } = userData; //get the al permissions for user to check it
 
     if (userType === "user") {
       if (!isAccept) {
@@ -14,7 +23,7 @@ module.exports = (options = {}) => {
           "Wait when admin accept you to be able to user our service"
         );
       }
-      if (disappled) {
+      if (block) {
         //check if user blocked by admin
         throw new Error("admin block you you can connect with him");
       }

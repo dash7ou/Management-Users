@@ -8,7 +8,7 @@ module.exports = (options = {}) => {
 
     const userData = params.user; //get all data for this user :)
 
-    const { userType, isAccept, disappled } = userData; //get all permission for user to check it :)
+    const { userType, isAccept, block } = userData; //get all permission for user to check it :)
 
     if (userType === "user") {
       if (+id !== +params.authentication.payload.sub) {
@@ -21,7 +21,7 @@ module.exports = (options = {}) => {
           "Wait when admin accpet you to be able to user our service"
         );
       }
-      if (disappled) {
+      if (block) {
         //check if user blocked by admin
         throw new Error("admin block you you can connect with him");
       }

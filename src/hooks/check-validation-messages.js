@@ -7,7 +7,7 @@ const Joi = require("@hapi/joi");
 
 module.exports = (options = {}) => {
   return async context => {
-    const dataFromAdmin = { ...context.arguments[0] };
+    const dataFromAdmin = context.arguments[0];
     const schema = Joi.object({
       text: Joi.string()
         .required()
@@ -15,7 +15,7 @@ module.exports = (options = {}) => {
         .max(200),
       message_to_user_id: Joi.number().required()
     });
-    const { error } = schema.validate({ ...dataFromAdmin });
+    const { error } = schema.validate(dataFromAdmin);
     if (error) {
       throw new Error(error);
     }

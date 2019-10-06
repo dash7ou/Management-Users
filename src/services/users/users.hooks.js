@@ -16,12 +16,20 @@ const beforeGetUser = require("../../hooks/before-get-user");
 const beforeFindUsers = require("../../hooks/before-find-users");
 
 const validationInput = require("../../hooks/validation-input");
+const { iff } = require("feathers-hooks-common");
+
+const isAuth = _ => context => {
+  console.log("return context");
+  return context;
+};
 
 module.exports = {
   before: {
     all: [],
     find: [authenticate("jwt"), beforeFindUsers()],
+
     get: [authenticate("jwt"), beforeGetUser()],
+
     create: [hashPassword("password"), validationInput(), beforeCreateUser()],
     update: [
       hashPassword("password"),

@@ -16,9 +16,9 @@ module.exports = (options = {}) => {
           .max(50),
         userType: Joi.string(),
         isAccept: Joi.boolean(),
-        disappled: Joi.boolean()
+        block: Joi.boolean()
       });
-      const { error } = schema.validate({ ...data });
+      const { error } = schema.validate(data);
       if (error) {
         throw new Error(error);
       }
@@ -32,9 +32,9 @@ module.exports = (options = {}) => {
           .max(50),
         userType: Joi.string(),
         isAccept: Joi.boolean(),
-        disappled: Joi.boolean()
+        block: Joi.boolean()
       });
-      const { error } = schema.validate({ ...data });
+      const { error } = schema.validate(data);
       if (error) {
         throw new Error(error);
       }

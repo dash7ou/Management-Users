@@ -24,9 +24,10 @@ module.exports = (options = {}) => {
         age,
         userType: "user",
         isAccept: false,
-        disappled: false
+        block: false
       }
     };
+    delete newContext.password;
     return newContext;
   };
 };

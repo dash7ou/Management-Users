@@ -16,8 +16,8 @@ module.exports = (options = {}) => {
         //check id id from url is equal id from auth
         throw new Error("You are not owner");
       }
-      const { userType, isAccept, disappled } = data;
-      if (userType || isAccept || disappled) {
+      const { userType, isAccept, block } = data;
+      if (userType || isAccept || block) {
         //if user try to change in permissions return error
         throw new Error("you havent permission to edit some felid");
       }
@@ -28,7 +28,7 @@ module.exports = (options = {}) => {
         );
       }
       //check user have not block by admin
-      if (userData.disappled) {
+      if (userData.block) {
         throw new Error("admin block you you can connect with him");
       }
       const valuesOfDataSend = Object.keys(data); //get all keys of data user need to change it
@@ -39,14 +39,10 @@ module.exports = (options = {}) => {
       context.data = userData;
       return context;
     } else if (userType === "admin") {
-      const userDB = await app.service("users").find({
-        //find the user admin need to change his data
-        query: {
-          id: id
-        }
-      });
+      const userDB = await app.service("users").get(+id);
+      //find the user admin need to change his data
 
-      const userData = { ...userDB.data[0] }; //get user data
+      const userData = userDB; //get user data
       const adminData = params.user; //get admin data from params
       const adminId = adminData.id;
       if (userData.id == 1) {
